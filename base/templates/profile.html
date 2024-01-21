@@ -1,0 +1,31 @@
+{% extends 'main.html' %} {% block content %}
+<div class="row mx-5 py-5">
+  <div class="col-2">{% include 'topic_component.html' %}</div>
+  <div class="col-7">
+    <div class="position-relative border p-5 mb-5">
+      <div class="position-absolute top-0 end-0">
+        {% if request.user == user %}
+        <a
+          class="btn badge bg-success px-3 m-3 fs-6 fw-normal"
+          href="{% url 'update_profile' user.id %}"
+          >Edit</a
+        >
+        {% endif %}
+      </div>
+      <h2 class="text-capitalize">{{user.name}}</h2>
+      <a
+        href="{% url 'profile' user.id %}"
+        class="d-block text-primary text-decoration-none"
+        >@{{user.username}}</a
+      >
+      <p>Email : {{user.email}}</p>
+      <p>
+        <span class="d-block text-uppercase fs-5 fw-bold">about</span
+        >{{user.bio}}
+      </p>
+    </div>
+    {% include 'feed_component.html' %}
+  </div>
+  <div class="col-3">{% include 'recent_activity_component.html' %}</div>
+</div>
+{% endblock content %}

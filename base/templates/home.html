@@ -1,0 +1,16 @@
+{% extends 'main.html' %} {% block content %}
+
+<div class='row mx-5 py-5'>
+  <div class='col-2'>
+    {% include 'topic_component.html' %}
+  </div>
+  <div class='col-7'>
+    <h3>News Feed</h3>
+    <hr>
+    {% include 'feed_component.html' %}
+  </div>
+  <div class='col-3'>
+    {% include 'recent_activity_component.html' %}
+  </div>
+</div>
+{% endblock content %}

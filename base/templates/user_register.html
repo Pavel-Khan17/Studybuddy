@@ -1,0 +1,66 @@
+{% extends 'main.html' %} {% block content %}
+<div class="w-25 m-auto py-5">
+  {% comment %} <div>
+    <form method="POST" action="">
+      {% csrf_token %} {{form.as_p}}
+      <input type="submit" value="Register" />
+    </form>
+    <p>already have an account ?</p>
+    <a href="{% url 'userlogin' %}"> Login </a>
+  </div> {% endcomment %}
+  <div class="border rounded-3 p-5">
+    <form class="row g-3" method="POST" action="">
+      {% csrf_token %}
+      <div class="col-12">
+        <label for="inputName" class="form-label">Name</label>
+        <input name="name" type="text" class="form-control" id="inputName" />
+      </div>
+      <div class="col-12">
+        <label for="inputUserName" class="form-label">UserName</label>
+        <input
+          name="username"
+          type="text"
+          class="form-control"
+          id="inputUserName"
+        />
+      </div>
+      <div class="col-12">
+        <label for="inputEmail4" class="form-label">Email</label>
+        <input
+          name="email"
+          type="email"
+          class="form-control"
+          id="inputEmail4"
+        />
+      </div>
+      <div class="col-md-6">
+        <label for="inputPassword4" class="form-label">Password</label>
+        <input
+          name="password1"
+          type="password"
+          class="form-control"
+          id="inputPassword4"
+        />
+      </div>
+      <div class="col-md-6">
+        <label for="inputPassword4" class="form-label"
+          >Password confirmation</label
+        >
+        <input
+          name="password2"
+          type="password"
+          class="form-control"
+          id="inputPassword4"
+        />
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">Sign in</button>
+      </div>
+    </form>
+  </div>
+  <div class="my-4">
+    <p>already have an account ?</p>
+    <a class="btn btn-primary" href="{% url 'userlogin' %}"> Login </a>
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,53 @@
+{% extends "main.html" %} {% block content %}
+<div class="container pt-5">
+  
+  <div class="row">
+    <div class="col-8">
+      <div class="position-relative border p-5">
+        <h2>{{room.name}}</h2>
+        <div class="position-absolute top-0 end-0">
+        {% if request.user == room.host %}
+        <a class="btn badge bg-success px-3 m-3 fs-6 fw-normal" href="{% url 'update_room' room.id %}">Edit</a>
+        <a class="btn badge bg-success px-3 m-3 fs-6 fw-normal" href="{% url 'delete_room' room.id %}">Delete</a>
+        {% endif %}
+        </div>
+        
+        <p>{{room.created|timesince}}</p>
+        <p>HOSTED BY</p>
+        <h5>@{{room.host}}</h5><span class="badge bg-success p-2">{{room.topic}}</span>
+        <p class="my-3">{{room.description}}</p>
+      </div>
+      <div class="text-white bg-secondary border p-5">
+        {% for massage in room_massage %}
+        {% comment %} {% if request.user == massage.user %}
+        <a href="{% url 'delete_massage' massage.id %}">Delete</a>
+        {% endif %} {% endcomment %}
+        <p>@{{massage.user}} <span>{{massage.updated|timesince}} ago</span></p>
+        <p>{{massage.body}}</p>
+        <hr/>
+        {% endfor %}
+      </div>
+      <div>
+        {% if request.user.is_authenticated %}
+        <form method="POST" action="">
+          {% csrf_token %}
+          <div class="input-group mb-3">
+            <input type="text" name="body" class="form-control p-3" placeholder="Enter your massage here..." aria-describedby="button-addon2">
+            <button class="btn btn-outline-success" type="submit" id="button-addon2">Button</button>
+          </div>
+        </form>
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-4 border p-5" >
+      <h3>participants<h3>
+      <hr>
+      <div class="">
+      {% for user in participants %}
+        <p href="#" class="fs-5" >@{{user.name}}</p> 
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

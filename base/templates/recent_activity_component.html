@@ -1,0 +1,19 @@
+<h3>Recent Activity</h3>
+<hr />
+<div class="border p-4">
+  {% for massages in room_massage %}
+  <div class="border rounded-2 p-2 mb-4">
+    <a href="{% url 'profile' massages.user.id %}" class="text-primary text-decoration-none">@{{massages.user}}</a>
+    <span>{{massages.updated|timesince}}</span>
+    <p>
+      Replies to <a href="{% url 'room' massages.room.id">{{massages.room}}</a>
+    </p>
+    <p class="text-white bg-secondary rounded-2 p-2">{{massages}}</p>
+
+    {% if request.user == massages.user %}
+    <a href="{% url 'delete_massage' massages.id %}">Delete</a>
+    {% endif %}
+  </div>
+
+  {% endfor %}
+</div>

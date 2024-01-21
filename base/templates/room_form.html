@@ -1,0 +1,58 @@
+{% extends "main.html" %} {% block content %}
+
+<div class="container">
+  <div class="w-50 mx-auto py-5">
+    <form method="POST">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="room_topic" class="form-label">Enter Topic Name</label>
+        <input
+          required
+          type="text"
+          class="form-control"
+          id="room_topic"
+          value="{{room.topic.name}}"
+          list="topic_list"
+          name="topic"
+        />
+        <datalist id="topic_list">
+          <select id="room_topic">
+            {% for topic in topics %}
+            <option value="{{topic.name}}">{{topic.name}}</option>
+            {% endfor %}
+          </select>
+        </datalist>
+      </div>
+      <div class="mb-3">
+        <label for="room_name" class="form-label">Room Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="room_name"
+          value="{{room.name}}"
+          name="name"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="room_description" class="form-label"
+          >Room Description</label
+        >
+        <textarea
+          class="form-control"
+          name="description"
+          cols="20"
+          rows="5"
+          id="room_description"
+        >{{room.description}}</textarea>
+      </div>
+      <div class="form__action">
+        <button type="submit" class="btn btn-success">Submit</button>
+        <button class="btn btn-danger" href="{{request.META.HTTP_REFERER}}">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}

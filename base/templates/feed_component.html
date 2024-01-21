@@ -1,0 +1,13 @@
+{% if request.user.is_authenticated %}
+<a class="btn btn-outline-success px-3" href="{% url 'create_room' %}">Create Room</a>
+{% endif %}
+<p>{{rooms_count}} Rooms are available</p>
+{% for room in rooms %}
+<div class="border p-4">
+  <p class="text-uppercase">Host @<a href="{% url 'profile' room.host.id %}" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">{{room.host.username}}</a></p>
+  <h3><a href="{% url 'room' room.id %}">{{room.name}}</a></h3>
+  <p>{{room.description}}</p>
+  <span class="badge bg-success p-2">{{room.topic.name}}</span>
+  <hr />
+</div>
+{% endfor %}

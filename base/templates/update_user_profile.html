@@ -1,0 +1,33 @@
+{% extends 'main.html' %} {% block content %}
+<div class="w-25 m-auto py-5">
+  <div class="border rounded-3 p-5">
+    <form class="row g-3" method="POST" action="">
+      {% csrf_token %}
+      {% comment %} {{user_form}} {% endcomment %}
+      
+      <div class="col-12">
+        <label for="inputName" class="form-label">Name</label>
+        {{user_form.name}}
+      </div>
+      <div class="col-12">
+        <label for="inputUserName" class="form-label">UserName</label>
+        {{user_form.username}}
+      </div>
+      <div class="col-12">
+        <label for="inputEmail4" class="form-label">Email</label>
+        {{user_form.email}}
+      </div>
+      <div class="col-12">
+        <label for="user_bio" class="form-label">BIO</label>
+        {{user_form.bio}}
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button class="btn btn-danger" href="{{request.META.HTTP_REFERER}}">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock content %}
